@@ -6,6 +6,7 @@
     let stage:createjs.Stage;
     let assetManager;
     let helloButton;
+    let helloLabel:objects.Label ;
 
     
   let manifest = [
@@ -36,6 +37,10 @@
     }
     function Main() :void{
         console.log("Game's main method.")
+        //Main method
+        helloLabel = new objects.Label("Hi!!","36px","Ariel","red",200,300,true);
+        stage.addChild(helloLabel);
+
         // start button
         helloButton = new createjs.Bitmap(assetManager.getResult("hello"));
         helloButton.regX = helloButton.getBounds().width * 0.5;
