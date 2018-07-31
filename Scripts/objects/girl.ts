@@ -31,7 +31,7 @@ module objects {
         }
 
         public Update():void {
-         //   this.x = managers.Game.Stage.mouseX;
+            this.x = managers.Game.Stage.mouseX;
              this.Move();
             this._checkBounds();
         }

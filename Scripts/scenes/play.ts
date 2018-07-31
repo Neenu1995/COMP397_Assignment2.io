@@ -4,8 +4,9 @@ module scenes {
         private _girl:objects.Girl;
         private _env:objects.Environment;
         private _star:objects.Star;
-        private _sweeper : objects.Minesweeper;
+        private _sweeper : objects.Minesweeper[];
         private _scoreboard : managers.ScoreBoard;
+        private _sweeperCount:number;
 
 
         // constructors
@@ -14,6 +15,13 @@ module scenes {
             this.Start();
         }
 
+         // private methods
+         private _buildSweepers():void {
+            for (let count = 0; count < this._sweeperCount; count++) {
+                this._sweeper.push(new objects.Minesweeper());
+                //this._clouds[count] = new objects.Cloud();
+            }
+        }
 
         // public methods
         public Start():void {
@@ -21,9 +29,11 @@ module scenes {
             this._girl = new objects.Girl();
             this._env = new objects.Environment();
             this._star = new objects.Star();
-            this._sweeper = new objects.Minesweeper;
+            this._sweeper = new Array<objects.Minesweeper>();
+            this._sweeperCount = 3;
             this._scoreboard = new managers.ScoreBoard();
             managers.Game.scoreBoard = this._scoreboard;
+            this._buildSweepers();
             this.Main();
         }
 
@@ -31,10 +41,20 @@ module scenes {
             this._girl.Update();
             this._env.Update();
             this._star.Update();
-            this._sweeper.Update();
+          
 
             managers.Collision.check(this._girl, this._star);
-            managers.Collision.check(this._girl, this._sweeper);
+            if(this._star.isColliding)
+            {
+                this.removeChild(this._star);
+                this._star = new objects.Star();
+                this.addChild(this._star);
+            }
+            this._sweeper.forEach(sweeper => {
+                sweeper.Update();
+                managers.Collision.check(this._girl, sweeper);
+            });
+         
 
         }
 
@@ -57,7 +77,9 @@ module scenes {
 
             // add the Girl object to the scene
             this.addChild(this._girl);
-            this.addChild(this._sweeper);
+            for (const sweeper of this._sweeper) {
+                this.addChild(sweeper);
+            }
 
             this.addChild(this._scoreboard.LivesLabel);
             this.addChild(this._scoreboard.ScoreLabel);

@@ -10,7 +10,6 @@
     var keyboardManager;
     var Manifest = [
         { id: "StartButton", src: "/Assets/images/StartButton.png" },
-        { id: "NextButton", src: "/Assets/images/NextButton.png" },
         { id: "girl", src: "/Assets/images/girl.png" },
         { id: "bg", src: "/Assets/images/BG.png" },
         { id: "star", src: "/Assets/images/star.png" },

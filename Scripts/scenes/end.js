@@ -21,8 +21,8 @@ var scenes;
         // private methods
         // public methods
         End.prototype.Start = function () {
-            this._endLabel = new objects.Label("Game Over!", "60px", "Consolas", "#000000", 320, 240, true);
-            this._backButton = new objects.Button("BackButton", 320, 360, true);
+            this._endLabel = new objects.Label("Game Over!", "60px", "Consolas", "#000000", 500, 140, true);
+            this._backButton = new objects.Button("StartButton", 500, 260, true);
             this.Main();
         };
         End.prototype.Update = function () {

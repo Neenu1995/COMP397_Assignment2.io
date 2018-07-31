@@ -38,7 +38,7 @@ var objects;
             this.x = 100;
         };
         Girl.prototype.Update = function () {
-            //   this.x = managers.Game.Stage.mouseX;
+            this.x = managers.Game.Stage.mouseX;
             this.Move();
             this._checkBounds();
         };
