@@ -1,3 +1,10 @@
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\scenes\play.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game. 
+ * 
+ */
 module scenes {
     export class Play extends objects.Scene {
         // member variables
@@ -8,6 +15,7 @@ module scenes {
         private _scoreboard : managers.ScoreBoard;
         private _sweeperCount:number;
 
+        public gameSound:createjs.AbstractSoundInstance;
 
         // constructors
         constructor() {
@@ -19,12 +27,16 @@ module scenes {
          private _buildSweepers():void {
             for (let count = 0; count < this._sweeperCount; count++) {
                 this._sweeper.push(new objects.Minesweeper());
-                //this._clouds[count] = new objects.Cloud();
             }
         }
 
         // public methods
         public Start():void {
+
+            this.gameSound = createjs.Sound.play("bgMusic");
+            this.gameSound.loop = -1;
+            this.gameSound.volume = 0.1;
+
 
             this._girl = new objects.Girl();
             this._env = new objects.Environment();
@@ -63,6 +75,7 @@ module scenes {
         }
 
         public Destroy():void {
+            this.gameSound.stop();
             this.removeAllChildren();
         }
 

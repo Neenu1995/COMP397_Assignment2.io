@@ -8,6 +8,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\objects\button.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game.
+ *
+ */
 var objects;
 (function (objects) {
     var Button = /** @class */ (function (_super) {

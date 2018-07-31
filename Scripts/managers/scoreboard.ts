@@ -1,3 +1,11 @@
+
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\managers\scoreboard.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game. 
+ * 
+ */
 module managers {
     export class ScoreBoard {
         // private member variables
@@ -89,7 +97,7 @@ module managers {
         public Start() {
             this._livesLabel = new objects.Label("Lives: 99", "30px", "Dock51", "red", 20, 20, false);
             this._scoreLabel = new objects.Label("Score: 99999", "30px", "Dock51", "red", 850, 20, false);
-            this._highScoreLabel = new objects.Label("High Score: 999999", "60px", "Dock51", "#FFFF00", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT, true);
+            this._highScoreLabel = new objects.Label("High Score: 999999", "50px", "Dock51", "red", 500,340 , true);
             
             this.HighScore = 0;
             this.Reset();

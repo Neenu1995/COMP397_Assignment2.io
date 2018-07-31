@@ -1,3 +1,10 @@
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\config\screen.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game.
+ *
+ */
 var config;
 (function (config) {
     var Screen = /** @class */ (function () {

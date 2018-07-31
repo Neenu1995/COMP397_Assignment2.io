@@ -1,5 +1,11 @@
-//IIFE -- Immediately Invoked Function Expression
-// also called self executing anonymous function
+
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\core\game.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game. 
+ * 
+ */
 (function(){
     // Game Variables
     let canvas:HTMLCanvasElement;
@@ -17,6 +23,7 @@
         {id: "sweeper", src:"/Assets/images/minesweeper.png"},
        
         {id: "starHit", src:"/Assets/audio/life.wav"},
+        {id: "bgMusic", src:"/Assets/audio/bg.mp3"},
         {id: "sweeperHit", src:"/Assets/audio/sweeperHit.wav"},
         {id: "jump", src:"/Assets/audio/Jump.wav"}
        
@@ -24,7 +31,7 @@
 
 
     function Init():void {
-        console.log(`%c Assets Loading...`,"font-weight:bold; font-size:20px; color: green;");
+       
         AssetManager = new createjs.LoadQueue();
         managers.Game.AssetManager = AssetManager; // set as single instance of the LoadQueue object
         AssetManager.installPlugin(createjs.Sound); // enables sound file preloading
@@ -33,7 +40,7 @@
     }
 
     function Start():void {
-        console.log(`%c Game Initializing...`,"font-weight:bold; font-size:20px; color: red;");
+       
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
 
@@ -49,7 +56,7 @@
         keyboardManager= new managers.Keyboard();
         managers.Game.keyboardManager = keyboardManager;
 
-        // This is where all the magic happens
+        
         Main();
     }
 

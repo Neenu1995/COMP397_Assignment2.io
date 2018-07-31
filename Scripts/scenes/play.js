@@ -8,6 +8,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\scenes\play.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game.
+ *
+ */
 var scenes;
 (function (scenes) {
     var Play = /** @class */ (function (_super) {
@@ -22,11 +29,13 @@ var scenes;
         Play.prototype._buildSweepers = function () {
             for (var count = 0; count < this._sweeperCount; count++) {
                 this._sweeper.push(new objects.Minesweeper());
-                //this._clouds[count] = new objects.Cloud();
             }
         };
         // public methods
         Play.prototype.Start = function () {
+            this.gameSound = createjs.Sound.play("bgMusic");
+            this.gameSound.loop = -1;
+            this.gameSound.volume = 0.1;
             this._girl = new objects.Girl();
             this._env = new objects.Environment();
             this._star = new objects.Star();
@@ -56,6 +65,7 @@ var scenes;
         Play.prototype.Reset = function () {
         };
         Play.prototype.Destroy = function () {
+            this.gameSound.stop();
             this.removeAllChildren();
         };
         Play.prototype.Main = function () {

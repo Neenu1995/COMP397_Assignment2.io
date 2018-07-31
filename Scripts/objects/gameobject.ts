@@ -1,3 +1,10 @@
+/**
+ * C:\Users\Neenu Shaji\Desktop\COMP397_Assignment2\COMP397_Assignment2\Scripts\objects\gameObjects.ts
+ * Neenu Shaji - 300991504
+ * Last Modified date :  31/7/18
+ * Program Desc : 2D scrolling game. 
+ * 
+ */
 module objects {
     export abstract class GameObject extends createjs.Bitmap {
         // member variables
