@@ -24,6 +24,7 @@ module  managers{
             
             case config.Keys.SPACE:
             this.jump = true;
+            createjs.Sound.play("Jump.wav");
             break;
     
         }

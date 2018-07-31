@@ -21,8 +21,9 @@ var scenes;
         // private methods
         // public methods
         Start.prototype.Start = function () {
-            this._welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "#000000", 320, 240, true);
-            this._startButton = new objects.Button("StartButton", 320, 360, true);
+            this._welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "red", 500, 80, true);
+            this._messageLabel = new objects.Label("Press Button to start game!", "20px", "Consolas", "red", 500, 140, true);
+            this._startButton = new objects.Button("StartButton", 500, 240, true);
             this.Main();
         };
         Start.prototype.Update = function () {
@@ -35,6 +36,7 @@ var scenes;
         Start.prototype.Main = function () {
             console.log("Started - START SCENE");
             this.addChild(this._welcomeLabel);
+            this.addChild(this._messageLabel);
             this.addChild(this._startButton);
             this._startButton.on("click", function () {
                 managers.Game.CurrentState = config.Scene.PLAY;

@@ -12,7 +12,7 @@ var objects;
 (function (objects) {
     var Label = /** @class */ (function (_super) {
         __extends(Label, _super);
-        //Consructor
+        // constructors
         function Label(text, fontSize, fontFamily, fontColour, x, y, isCentered) {
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
@@ -28,14 +28,14 @@ var objects;
             _this.y = y;
             return _this;
         }
-        //Private methods
+        // private methods
         Label.prototype._initialize = function () {
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.halfWidth = this.width * 0.5;
             this.halfHeight = this.height * 0.5;
         };
-        //public methods
+        // public methods
         Label.prototype.Start = function () {
         };
         Label.prototype.Update = function () {

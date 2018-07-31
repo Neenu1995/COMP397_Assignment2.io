@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Assignment2</title>
+    <title>CreateJS Demo with TypeScript</title>
     <!-- CSS Section -->
-    <link rel="stylesheet" href="/Content/game.css">
+    <link rel="stylesheet" href="/Content/app.css">
 </head> 
 <body>
     <!-- Game Lives Here -->
@@ -18,33 +18,42 @@
     <script src="/node_modules/tweenjs/lib/tweenjs.min.js"></script>
     <script src="/node_modules/soundjs/lib/soundjs.min.js"></script>
     <script src="/node_modules/preloadjs/lib/preloadjs.min.js"></script>
-        
+
+
     <!-- Game Scripts -->
-   
+
     <!-- Config Scripts -->
     <script src="/Scripts/config/scene.js"></script>
     <script src="/Scripts/config/screen.js"></script>
     <script src="/Scripts/config/keys.js"></script>
 
-    <!-- Manager Scripts -->
-    <script src="/Scripts/managers/game.js"></script>
-    <script src="/Scripts/managers/keyboard.js"></script>
+    <script src="/Scripts/math/Vec2.js"></script>
 
+    <!-- Manager Scripts -->
+       <script src="/Scripts/managers/game.js"></script>
+       <script src="/Scripts/managers/keyboard.js"></script>
 
     <!-- Game Objects -->
-    
+
     <script src="/Scripts/objects/gameobject.js"></script>
     <script src="/Scripts/objects/label.js"></script>
     <script src="/Scripts/objects/button.js"></script>
     <script src="/Scripts/objects/scene.js"></script>
 
+    <script src="/Scripts/objects/girl.js"></script>
+    <script src="/Scripts/objects/environment.js"></script>
+    <script src="/Scripts/objects/star.js"></script>
+    <script src="/Scripts/objects/minesweeper.js"></script>
+
+    <!-- Yet Another Manager Script -->
     
+    <script src="/Scripts/managers/scoreboard.js"></script>
+    <script src="/Scripts/managers/collision.js"></script>
 
     <!-- Scene Scripts -->
     <script src="/Scripts/scenes/end.js"></script>
     <script src="/Scripts/scenes/play.js"></script>
     <script src="/Scripts/scenes/start.js"></script>
-    
 
     <!-- Core Script -->
     <script src="/Scripts/core/game.js"></script>

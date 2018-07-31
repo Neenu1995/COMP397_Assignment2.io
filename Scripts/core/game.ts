@@ -1,68 +1,96 @@
+//IIFE -- Immediately Invoked Function Expression
+// also called self executing anonymous function
 (function(){
-
-    "use strict";
-    //Game variables
-    let canvas = document.getElementById("canvas");
+    // Game Variables
+    let canvas:HTMLCanvasElement;
     let stage:createjs.Stage;
-    let assetManager;
-    let helloButton;
-    let helloLabel:objects.Label ;
+    let AssetManager: createjs.LoadQueue;
+    let CurrentScene: objects.Scene;
+    let CurrentState: config.Scene;
+    let keyboardManager:managers.Keyboard;
 
-    
-  let manifest = [
-    { id: "hello", src: "/Assets/helloButton.png" }] 
+    let Manifest = [
+        {id: "StartButton", src:"/Assets/images/StartButton.png"},
+        {id: "NextButton", src:"/Assets/images/NextButton.png"},
+        {id: "girl", src:"/Assets/images/girl.png"},
+        {id: "bg", src:"/Assets/images/BG.png"},
+        {id: "star", src:"/Assets/images/star.png"},
+        {id: "sweeper", src:"/Assets/images/minesweeper.png"},
+       
+        {id: "starHit", src:"/Assets/audio/life.wav"},
+        {id: "sweeperHit", src:"/Assets/audio/sweeperHit.wav"},
+        {id: "jump", src:"/Assets/audio/Jump.wav"}
+       
+    ]
 
-    function Init() :void {
-        console.log("Init method.");
-        assetManager = new createjs.LoadQueue();
-      assetManager.installPlugin(createjs.Sound);
-      assetManager.on("complete", Start);
-      assetManager.loadManifest(manifest);
 
-       // Start();
-        
+    function Init():void {
+        console.log(`%c Assets Loading...`,"font-weight:bold; font-size:20px; color: green;");
+        AssetManager = new createjs.LoadQueue();
+        managers.Game.AssetManager = AssetManager; // set as single instance of the LoadQueue object
+        AssetManager.installPlugin(createjs.Sound); // enables sound file preloading
+        AssetManager.on("complete", Start);
+        AssetManager.loadManifest(Manifest);
     }
-    function Start() :void {
-        console.log("Start method.")
-        stage = new createjs.Stage(canvas);
-        stage.enableMouseOver(20);
 
-        createjs.Ticker.framerate = 60;
-        createjs.Ticker.on("tick",Update);
+    function Start():void {
+        console.log(`%c Game Initializing...`,"font-weight:bold; font-size:20px; color: red;");
+        canvas = document.getElementsByTagName("canvas")[0];
+        stage = new createjs.Stage(canvas);
+
+        managers.Game.Stage = stage;
+
+        stage.enableMouseOver(20); // enables mouse over events
+        createjs.Ticker.framerate = 60; // sets framerate to 60fps
+        createjs.Ticker.on("tick", Update);
+
+        CurrentState = config.Scene.START;
+        managers.Game.CurrentState = CurrentState;
+
+        keyboardManager= new managers.Keyboard();
+        managers.Game.keyboardManager = keyboardManager;
+
+        // This is where all the magic happens
         Main();
     }
-    function Update() :void{
-        stage.update();    
 
+    function Update():void {
+        if(CurrentState != managers.Game.CurrentState) {
+            CurrentState = managers.Game.CurrentState;
+            Main();
+        }
+
+        CurrentScene.Update();
+
+        stage.update();
     }
-    function Main() :void{
-        console.log("Game's main method.")
-        //Main method
-        helloLabel = new objects.Label("Hi!!","36px","Ariel","red",200,300,true);
-        stage.addChild(helloLabel);
 
-        // start button
-        helloButton = new createjs.Bitmap(assetManager.getResult("hello"));
-        helloButton.regX = helloButton.getBounds().width * 0.5;
-        helloButton.regY = helloButton.getBounds().height * 0.5;
-        helloButton.x = 500 ;
-        helloButton.y = 240;
-        stage.addChild(helloButton);
+    function Main():void {
+        console.log(`%c Scene Switching...`,"font-style:italic; font-size:16px; color:blue;");
 
-        // start button listeners
-        helloButton.addEventListener("click", function() {
-            console.log("Hello Button Clicked");
-        });
+        if(CurrentScene) {
+            CurrentScene.Destroy();
+            stage.removeChild(CurrentScene);
+        }
+    
+        switch(CurrentState) {
+            case config.Scene.START:
+            CurrentScene = new scenes.Start();
+            break;
 
-        helloButton.addEventListener("mouseover", function(event) {
-            event.currentTarget.alpha = 0.7;
-        });
+            case config.Scene.PLAY:
+            CurrentScene = new scenes.Play();
+            break;
 
-        helloButton.addEventListener("mouseout", function(event) {
-            event.currentTarget.alpha = 1.0;
-        });
+            case config.Scene.END:
+            CurrentScene = new scenes.End();
+            break;
+        }
 
-
+        managers.Game.CurrentScene = CurrentScene;
+        stage.addChild(CurrentScene);
     }
-    window.onload = Init;
+
+    window.addEventListener("load", Init);
+
 })();

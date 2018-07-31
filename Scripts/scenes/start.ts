@@ -2,6 +2,7 @@ module scenes {
     export class Start extends objects.Scene {
         // member variables
         private _welcomeLabel: objects.Label;
+        private _messageLabel: objects.Label;
         private _startButton: objects.Button;
 
         // constructors
@@ -16,8 +17,9 @@ module scenes {
         // public methods
         public Start():void {
 
-            this._welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "#000000", 320, 240, true);
-            this._startButton = new objects.Button("StartButton", 320, 360, true);
+            this._welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "red", 500, 80, true);
+            this._messageLabel = new objects.Label("Press Button to start game!", "20px", "Consolas", "red", 500, 140, true);
+            this._startButton = new objects.Button("StartButton", 500, 240, true);
 
             this.Main();
         }
@@ -37,6 +39,7 @@ module scenes {
         public Main():void {
             console.log("Started - START SCENE");
             this.addChild(this._welcomeLabel);
+            this.addChild(this._messageLabel);
             this.addChild(this._startButton);
 
             this._startButton.on("click", function(){

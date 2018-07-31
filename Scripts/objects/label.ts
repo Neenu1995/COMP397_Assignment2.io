@@ -1,15 +1,13 @@
-module objects{
-    export class Label extends createjs.Text{
-        //Private instance variable
-
-        //public properties
+module objects {
+    export class Label extends createjs.Text {
+        // member variables
         public isCentered:boolean;
         public width:number;
         public height:number;
         public halfWidth:number;
         public halfHeight:number;
 
-        //Consructor
+        // constructors
         constructor(text:string, fontSize:string, fontFamily:string, fontColour:string, x:number = 0, y:number = 0, isCentered:boolean = false) {
             super(text, fontSize + " " + fontFamily, fontColour);
 
@@ -26,7 +24,7 @@ module objects{
             this.y = y;
         }
 
-        //Private methods
+        // private methods
         private _initialize():void {
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -34,8 +32,7 @@ module objects{
             this.halfHeight = this.height * 0.5;
         }
 
-
-        //public methods
+        // public methods
         public Start() {
 
         }
@@ -47,6 +44,5 @@ module objects{
         public Reset() {
 
         }
-
     }
 }
